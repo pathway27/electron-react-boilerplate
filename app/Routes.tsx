@@ -16,10 +16,21 @@ const CounterPage = (props: Record<string, any>) => (
   </React.Suspense>
 );
 
+const LazyCalendarPage = React.lazy(() =>
+  import(/* webpackChunkName: "CalendarPage" */ './containers/CalendarPage')
+);
+
+const CalendarPage = (props: Record<string, any>) => (
+  <React.Suspense fallback={<h1>Loading...</h1>}>
+    <LazyCalendarPage {...props} />
+  </React.Suspense>
+);
+
 export default function Routes() {
   return (
     <App>
       <Switch>
+        <Route path={routes.CALENDAR} component={CalendarPage} />
         <Route path={routes.COUNTER} component={CounterPage} />
         <Route path={routes.HOME} component={HomePage} />
       </Switch>
