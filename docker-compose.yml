@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: apache/couchdb
+    ports:
+      - "5984:5984"
+    volumes:
+      - ./couch-data:/opt/couchdb/data
+
+  scrapyd:
+    image: vimagick/scrapyd:py3
+    ports:
+      - "6800:6800"
+    volumes:
+      - ./scraper-data:/var/lib/scrapyd
+      - /usr/local/lib/python3.4/dist-packages
+    depends_on:
+      - db
+    restart: always
+
+  scrapy:
+    image: vimagick/scrapyd:py3
+    command: bash
+    volumes:
+      - .:/code
+    working_dir: /code
+    restart: always

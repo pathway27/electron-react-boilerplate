@@ -4,6 +4,7 @@ This is a currently a mega repo until release. It includes the three layers:
 
 - Client Desktop Application - `/app` - (Electron + React)
 - Wikipedia / Other Sites Scraper - `/scraper` - (scrapy)
+- Backend Application Server - `/server` or API - (Phoenix/Elixir) ?
 - Couch DB (via Docker Compose)
 
 ```
